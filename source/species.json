@@ -1,0 +1,29 @@
+{
+  "neighborhood": "Pilsen",
+  "most_common": {
+    "species": "gray squirrel",
+    "probability": [
+      95,
+      80,
+      100
+    ]
+  },
+  "less_common": [
+    {
+      "species": "raccoon",
+      "probability": [
+        80,
+        60,
+        85
+      ]
+    },
+    {
+      "species": "deer",
+      "probability": [
+        20,
+        10,
+        25
+      ]
+    }
+  ]
+}

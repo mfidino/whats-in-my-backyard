@@ -9,15 +9,17 @@ description: Seth and Mason's cool stuff
 
   <div class="row">
     <div class="col-md-6">
-      <div class="map"> </div>
+      <div class="map"> 
+        <button type="button" class="btn btn-outline-primary" id="map-trigger-button">Primary</button>
+      </div>
     </div>
     <div class="col-md-6">
       <div class="card">
         <div class="card-header">
-          The most common species in this neighborhood is:
+          The most common species in <span id="selected-neighborhood"> </span> is:
         </div>
         <div class="card-body">
-          <h5 class="card-title">Gray squirrels brandishing knives</h5>
+          <h5 class="card-title"><span id="most-common-species-text"></span></h5>
           <p class="card-text">We have no clue who armed them with knives, but now they have them.</p>
           <img class="most-common-species-image" src="/images/squirrel_fight.jpg" alt="two squirrels brandishing knives at one another">
         </div>
