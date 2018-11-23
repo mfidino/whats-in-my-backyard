@@ -1,0 +1,7 @@
+steps
+
+1. make a directory
+2. yarn add hexo-cli
+3. yarn hexo init [project name]
+4. move everything from project name directory into root directory
+mv [projectname]/* ./
