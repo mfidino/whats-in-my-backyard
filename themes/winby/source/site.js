@@ -2,14 +2,6 @@ function startSite() {
   $("#map-trigger-button").on("click", function() {
     updateSelectedNeighborhood();
   });
-
-  // asynchronously get google maps script
-  // manually using ajax so that we cache the script
-  // fetch(
-  //   "https://maps.googleapis.com/maps/api/js?key=AIzaSyDZq1jagcthd0iaAuWmD2tV8tpvuaet5mY&libraries=places"
-  // ).then(function(response) {
-  //   return initMap();
-  // });
 }
 $(document).ready(startSite);
 
@@ -41,21 +33,14 @@ function replaceCurrentSpecies(data) {
 }
 
 var map;
-//var src = "/neighborhood.kml";
-//"https://developers.google.com/maps/documentation/javascript/examples/kml/westcampus.kml";
 
 window.initMap = function() {
   console.log("bois");
   map = new google.maps.Map(document.getElementById("map"), {
-    center: new google.maps.LatLng(41.928274, -87.706678),
+    center: new google.maps.LatLng(41.83, -87.71),
     zoom: 10,
     mapTypeId: "terrain"
   });
-
-  // var ctaLayer = new google.maps.KmlLayer({
-  //   url: "http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml",
-  //   map: map
-  // });
 
   var kmlLayer = new google.maps.KmlLayer({
     url:
