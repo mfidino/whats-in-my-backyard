@@ -39,6 +39,8 @@ window.initMap = function() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: new google.maps.LatLng(41.83, -87.71),
     zoom: 10,
+    streetViewControl: false,
+    mapTypeControl: false,
     mapTypeId: "terrain"
   });
 
