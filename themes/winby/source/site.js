@@ -52,8 +52,9 @@ window.initMap = function() {
     map: map
   });
   kmlLayer.addListener("click", function(event) {
-    var content = event.featureData.infoWindowHtml;
-    var testimonial = document.getElementById("capture");
-    testimonial.innerHTML = content;
+    var neighborhoodName = event.featureData.name;
+    console.log(neighborhoodName);
+    //updateSelectedNeighborhood(neighborhoodName);
+    $("#selected-neighborhood").text(`You have selected: ${neighborhoodName}`);
   });
 };
