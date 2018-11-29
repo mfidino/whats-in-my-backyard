@@ -6,7 +6,6 @@ function startSite() {
 $(document).ready(startSite);
 
 document.addEventListener("DOMContentLoaded", function() {
-  console.log("eventListen");
   if (document.querySelectorAll("#map").length > 0) {
     var js_file = document.createElement("script");
     js_file.type = "text/javascript";
@@ -28,14 +27,13 @@ function updateSelectedNeighborhood() {
 
 function replaceCurrentSpecies(data) {
   $("#most-common-species-text").text(data.most_common.species);
-  $("#selected-neighborhood").text(data.neighborhood);
+  //$("#selected-neighborhood").text(data.neighborhood);
   window.species = data;
 }
 
 var map;
 
 window.initMap = function() {
-  console.log("bois");
   map = new google.maps.Map(document.getElementById("map"), {
     center: new google.maps.LatLng(41.83, -87.71),
     zoom: 10,
@@ -53,8 +51,7 @@ window.initMap = function() {
   });
   kmlLayer.addListener("click", function(event) {
     var neighborhoodName = event.featureData.name;
-    console.log(neighborhoodName);
-    //updateSelectedNeighborhood(neighborhoodName);
+    updateSelectedNeighborhood(neighborhoodName);
     $("#selected-neighborhood").text(`You have selected: ${neighborhoodName}`);
   });
 };
