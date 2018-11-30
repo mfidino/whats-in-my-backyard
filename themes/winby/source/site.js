@@ -15,17 +15,20 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 
-function updateSelectedNeighborhood() {
+function updateSelectedNeighborhood(neigh) {
+  //console.log(neigh);
   fetch("/species.json")
     .then(function(response) {
       return response.json();
     })
     .then(function(data) {
-      replaceCurrentSpecies(data);
+      console.log(data[neigh]);
+      replaceCurrentSpecies(data[neigh]);
     });
 }
 
 function replaceCurrentSpecies(data) {
+  console.log(data);
   $("#most-common-species-text").text(data.most_common.species);
   //$("#selected-neighborhood").text(data.neighborhood);
   window.species = data;
@@ -51,7 +54,8 @@ window.initMap = function() {
   });
   kmlLayer.addListener("click", function(event) {
     var neighborhoodName = event.featureData.name;
-    updateSelectedNeighborhood(neighborhoodName);
+    //console.log(`${neighborhoodName}`);
+    updateSelectedNeighborhood(`${neighborhoodName}`);
     $("#selected-neighborhood").text(`You have selected: ${neighborhoodName}`);
   });
 };
