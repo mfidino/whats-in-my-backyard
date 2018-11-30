@@ -2,7 +2,7 @@
   "O'Hare": {
     "neighborhood": "O'Hare",
   "most_common": {
-    "species": "charizard",
+    "species": "coyote",
     "probability": [
       95,
       80,
@@ -31,7 +31,7 @@
 "Norwood Park": {
     "neighborhood": "Norwood Park",
   "most_common": {
-    "species": "Raccoon",
+    "species": "raccoon",
     "probability": [
       83,
       75,
