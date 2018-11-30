@@ -26,12 +26,20 @@ function updateSelectedNeighborhood(neigh) {
 }
 
 function replaceCurrentSpecies(data) {
+  if (
+    data.most_common.probability[0] >= 80 &&
+    data.most_common.probability[0] < 90
+  ) {
+    var aOrAn = "an";
+  } else {
+    aOrAn = "a";
+  }
   var mostCommon = `You are most likely to see ${data.most_common.species}.`;
-  var mostCommonProbability = `There is an ${
+  var mostCommonProbability = `There is ${aOrAn} ${
     data.most_common.probability[0]
   } (${data.most_common.probability[1]} - ${
     data.most_common.probability[2]
-  })% probability that ${data.most_common.species} are in the ${
+  })% probability that ${data.most_common.species.toLowerCase()} are in the ${
     data.neighborhood
   } community area.`;
   $("#most-common-species-text").text(mostCommon);
