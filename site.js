@@ -15,18 +15,35 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 
-function updateSelectedNeighborhood() {
+function updateSelectedNeighborhood(neigh) {
   fetch("/species.json")
     .then(function(response) {
       return response.json();
     })
     .then(function(data) {
-      replaceCurrentSpecies(data);
+      replaceCurrentSpecies(data[neigh]);
     });
 }
 
 function replaceCurrentSpecies(data) {
-  $("#most-common-species-text").text(data.most_common.species);
+  if (
+    data.most_common.probability[0] >= 80 &&
+    data.most_common.probability[0] < 90
+  ) {
+    var aOrAn = "an";
+  } else {
+    aOrAn = "a";
+  }
+  var mostCommon = `You are most likely to see ${data.most_common.species}.`;
+  var mostCommonProbability = `There is ${aOrAn} ${
+    data.most_common.probability[0]
+  } (${data.most_common.probability[1]} - ${
+    data.most_common.probability[2]
+  })% probability that ${data.most_common.species.toLowerCase()} are in the ${
+    data.neighborhood
+  } community area.`;
+  $("#most-common-species-text").text(mostCommon);
+  $("#most-common-probability-text").text(mostCommonProbability);
   //$("#selected-neighborhood").text(data.neighborhood);
   window.species = data;
 }
@@ -51,7 +68,8 @@ window.initMap = function() {
   });
   kmlLayer.addListener("click", function(event) {
     var neighborhoodName = event.featureData.name;
-    updateSelectedNeighborhood(neighborhoodName);
-    $("#selected-neighborhood").text(`You have selected: ${neighborhoodName}`);
+    //console.log(`${neighborhoodName}`);
+    updateSelectedNeighborhood(`${neighborhoodName}`);
+    $("#selected-neighborhood").text(`${neighborhoodName}`);
   });
 };
