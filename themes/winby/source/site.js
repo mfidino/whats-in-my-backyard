@@ -16,20 +16,26 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function updateSelectedNeighborhood(neigh) {
-  //console.log(neigh);
   fetch("/species.json")
     .then(function(response) {
       return response.json();
     })
     .then(function(data) {
-      console.log(data[neigh]);
       replaceCurrentSpecies(data[neigh]);
     });
 }
 
 function replaceCurrentSpecies(data) {
-  console.log(data);
-  $("#most-common-species-text").text(data.most_common.species);
+  var mostCommon = `You are most likely to see ${data.most_common.species}.`;
+  var mostCommonProbability = `There is an ${
+    data.most_common.probability[0]
+  } (${data.most_common.probability[1]} - ${
+    data.most_common.probability[2]
+  })% probability that ${data.most_common.species} are in the ${
+    data.neighborhood
+  } community area.`;
+  $("#most-common-species-text").text(mostCommon);
+  $("#most-common-probability-text").text(mostCommonProbability);
   //$("#selected-neighborhood").text(data.neighborhood);
   window.species = data;
 }
@@ -56,6 +62,6 @@ window.initMap = function() {
     var neighborhoodName = event.featureData.name;
     //console.log(`${neighborhoodName}`);
     updateSelectedNeighborhood(`${neighborhoodName}`);
-    $("#selected-neighborhood").text(`You have selected: ${neighborhoodName}`);
+    $("#selected-neighborhood").text(`${neighborhoodName}`);
   });
 };
