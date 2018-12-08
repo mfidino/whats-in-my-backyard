@@ -42,9 +42,9 @@ function replaceCurrentSpecies(data) {
   })% probability that ${data.most_common.species.toLowerCase()} are in the ${
     data.neighborhood
   } community area.`;
-  var block_html = `<img class="most-common-species-image" src=${
+  var block_html = `<img class="most-common-species-image" src="${
     data.most_common.image
-  } alt="${data.most_common.species.toLowerCase()} drawing">`;
+  }" alt="${data.most_common.species.toLowerCase()} drawing">`;
   $("#most-common-species-text").text(mostCommon);
   $("#most-common-probability-text").text(mostCommonProbability);
   $("#changing-image").html(block_html);
