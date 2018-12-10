@@ -25,6 +25,25 @@ function updateSelectedNeighborhood(neigh) {
     });
 }
 
+function makeUL(array) {
+  // Create the list element:
+  var list = document.createElement("ul");
+
+  for (var i = 0; i < array.length; i++) {
+    // Create the list item:
+    var item = document.createElement("li");
+
+    // Set its contents:
+    item.appendChild(document.createTextNode(array[i].species));
+
+    // Add it to the list:
+    list.appendChild(item);
+  }
+
+  // Finally, return the constructed list:
+  return list;
+}
+
 function replaceCurrentSpecies(data) {
   if (
     data.most_common.probability[0] >= 80 &&
@@ -32,8 +51,9 @@ function replaceCurrentSpecies(data) {
   ) {
     var aOrAn = "an";
   } else {
-    aOrAn = "a";
+    var aOrAn = "a";
   }
+
   var mostCommon = `You are most likely to see ${data.most_common.species}.`;
   var mostCommonProbability = `There is ${aOrAn} ${
     data.most_common.probability[0]
@@ -51,6 +71,7 @@ function replaceCurrentSpecies(data) {
   $("#most-common-probability-text").text(mostCommonProbability);
   $("#changing-image").html(block_html);
   $("#less-common-species-header").text(lessCommon);
+  document.getElementById("tester").appendChild(makeUL(data.less_common));
 
   //$("#selected-neighborhood").text(data.neighborhood);
   window.species = data;
