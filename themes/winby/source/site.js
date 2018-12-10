@@ -45,9 +45,12 @@ function replaceCurrentSpecies(data) {
   var block_html = `<img class="most-common-species-image" src="${
     data.most_common.image
   }" alt="${data.most_common.species.toLowerCase()} drawing">`;
+  var lessCommon = `Other species you may see in ${data.neighborhood} are:`;
+
   $("#most-common-species-text").text(mostCommon);
   $("#most-common-probability-text").text(mostCommonProbability);
   $("#changing-image").html(block_html);
+  $("#less-common-species-header").text(lessCommon);
 
   //$("#selected-neighborhood").text(data.neighborhood);
   window.species = data;
