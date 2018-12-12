@@ -1,3 +1,6 @@
+import { siteFunctions } from "siteFunctions";
+var siteFunctions = new SiteFunctions();
+
 function startSite() {
   $("#map-trigger-button").on("click", function() {
     updateSelectedNeighborhood();
@@ -71,7 +74,7 @@ function replaceCurrentSpecies(data) {
   $("#most-common-probability-text").text(mostCommonProbability);
   $("#changing-image").html(block_html);
   $("#less-common-species-header").text(lessCommon);
-  document.getElementById("tester").appendChild(makeUL(data.less_common));
+  $("#tester").html(siteFunctions.makeUL(data.lessCommon));
 
   //$("#selected-neighborhood").text(data.neighborhood);
   window.species = data;
