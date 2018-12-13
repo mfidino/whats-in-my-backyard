@@ -10,24 +10,18 @@
     ],
     "image":"/images/coyote.png"
   },
-  "less_common": [
+  "less_common": 
     {
-      "species": "raccoon",
-      "probability": [
+      "species": ["raccoon", "deer"],
+      "probability": {
+        "raccoon": [
         80,
         60,
         85
-      ]
-    },
-    {
-      "species": "deer",
-      "probability": [
-        20,
-        10,
-        25
-      ]
+      ],
+        "deer": [45,30,75]
     }
-  ]
+    }
 },
 "Norwood Park": {
     "neighborhood": "Norwood Park",
@@ -40,22 +34,16 @@
     ],
     "image": "/images/raccoon.png"
   },
-  "less_common": [
+  "less_common": 
     {
-      "species": "raccoon",
-      "probability": [
+      "species": ["coyote", "gray squirrel"],
+      "probability": {
+        "coyote": [
         80,
         60,
         85
-      ]
-    },
-    {
-      "species": "deer",
-      "probability": [
-        20,
-        10,
-        25
-      ]
+      ],
+        "gray squirrel": [45,30,75]
     }
-  ]
+    }
 }}

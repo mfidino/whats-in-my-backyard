@@ -15,5 +15,14 @@
     "hexo-renderer-marked": "^0.3.2",
     "hexo-renderer-stylus": "^0.3.3",
     "hexo-server": "^0.3.1"
+  },
+  "scripts":{
+    "test": "mocha themes/winby/test/",
+    "test:watch": "mocha --watch themes/winby/test/ themes/source"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "sinon": "^6.0.0"
   }
 }
