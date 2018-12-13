@@ -28,24 +28,24 @@ function updateSelectedNeighborhood(neigh) {
     });
 }
 
-function makeUL(array) {
-  // Create the list element:
-  var list = document.createElement("ul");
+// function makeUL(array) {
+//   // Create the list element:
+//   var list = document.createElement("ul");
 
-  for (var i = 0; i < array.length; i++) {
-    // Create the list item:
-    var item = document.createElement("li");
+//   for (var i = 0; i < array.length; i++) {
+//     // Create the list item:
+//     var item = document.createElement("li");
 
-    // Set its contents:
-    item.appendChild(document.createTextNode(array[i].species));
+//     // Set its contents:
+//     item.appendChild(document.createTextNode(array[i].species));
 
-    // Add it to the list:
-    list.appendChild(item);
-  }
+//     // Add it to the list:
+//     list.appendChild(item);
+//   }
 
-  // Finally, return the constructed list:
-  return list;
-}
+//   // Finally, return the constructed list:
+//   return list;
+// }
 
 function replaceCurrentSpecies(data) {
   if (
@@ -74,7 +74,7 @@ function replaceCurrentSpecies(data) {
   $("#most-common-probability-text").text(mostCommonProbability);
   $("#changing-image").html(block_html);
   $("#less-common-species-header").text(lessCommon);
-  $("#tester").html(siteFunctions.makeUL(data.lessCommon));
+  $("#tester").html(siteFunctions.makeUL(data.less_common.species));
 
   //$("#selected-neighborhood").text(data.neighborhood);
   window.species = data;
