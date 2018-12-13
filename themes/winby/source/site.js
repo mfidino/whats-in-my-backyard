@@ -1,4 +1,4 @@
-import { siteFunctions } from "siteFunctions";
+import("./siteFunctions.js");
 var siteFunctions = new SiteFunctions();
 
 function startSite() {
