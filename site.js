@@ -1,3 +1,6 @@
+import("./siteFunctions.js");
+var siteFunctions = new SiteFunctions();
+
 function startSite() {
   $("#map-trigger-button").on("click", function() {
     updateSelectedNeighborhood();
@@ -25,6 +28,25 @@ function updateSelectedNeighborhood(neigh) {
     });
 }
 
+// function makeUL(array) {
+//   // Create the list element:
+//   var list = document.createElement("ul");
+
+//   for (var i = 0; i < array.length; i++) {
+//     // Create the list item:
+//     var item = document.createElement("li");
+
+//     // Set its contents:
+//     item.appendChild(document.createTextNode(array[i].species));
+
+//     // Add it to the list:
+//     list.appendChild(item);
+//   }
+
+//   // Finally, return the constructed list:
+//   return list;
+// }
+
 function replaceCurrentSpecies(data) {
   if (
     data.most_common.probability[0] >= 80 &&
@@ -32,8 +54,9 @@ function replaceCurrentSpecies(data) {
   ) {
     var aOrAn = "an";
   } else {
-    aOrAn = "a";
+    var aOrAn = "a";
   }
+
   var mostCommon = `You are most likely to see ${data.most_common.species}.`;
   var mostCommonProbability = `There is ${aOrAn} ${
     data.most_common.probability[0]
@@ -45,9 +68,13 @@ function replaceCurrentSpecies(data) {
   var block_html = `<img class="most-common-species-image" src="${
     data.most_common.image
   }" alt="${data.most_common.species.toLowerCase()} drawing">`;
+  var lessCommon = `Other species you may see in ${data.neighborhood} are:`;
+
   $("#most-common-species-text").text(mostCommon);
   $("#most-common-probability-text").text(mostCommonProbability);
   $("#changing-image").html(block_html);
+  $("#less-common-species-header").text(lessCommon);
+  $("#tester").html(siteFunctions.makeUL(data.less_common.species));
 
   //$("#selected-neighborhood").text(data.neighborhood);
   window.species = data;
