@@ -61,7 +61,277 @@ window.initMap = function() {
     zoom: 10,
     streetViewControl: false,
     mapTypeControl: false,
-    mapTypeId: "terrain"
+    mapTypeId: "terrain",
+    styles: [
+      {
+        elementType: "geometry.fill",
+        stylers: [
+          {
+            color: "#4bac42"
+          }
+        ]
+      },
+      {
+        elementType: "geometry.stroke",
+        stylers: [
+          {
+            color: "#4bac42"
+          }
+        ]
+      },
+      {
+        featureType: "landscape.man_made",
+        elementType: "geometry.fill",
+        stylers: [
+          {
+            color: "#c2cedc"
+          }
+        ]
+      },
+      {
+        featureType: "landscape.man_made",
+        elementType: "geometry.stroke",
+        stylers: [
+          {
+            color: "#586671"
+          }
+        ]
+      },
+      {
+        featureType: "landscape.natural",
+        elementType: "geometry.fill",
+        stylers: [
+          {
+            color: "#c4cedb"
+          }
+        ]
+      },
+      {
+        featureType: "landscape.natural",
+        elementType: "geometry.stroke",
+        stylers: [
+          {
+            color: "#c4cedb"
+          }
+        ]
+      },
+      {
+        featureType: "poi.attraction",
+        elementType: "geometry.fill",
+        stylers: [
+          {
+            color: "#c4cedb"
+          }
+        ]
+      },
+      {
+        featureType: "poi.attraction",
+        elementType: "geometry.stroke",
+        stylers: [
+          {
+            color: "#c4cedb"
+          }
+        ]
+      },
+      {
+        featureType: "poi.business",
+        elementType: "geometry.fill",
+        stylers: [
+          {
+            color: "#c4cedb"
+          }
+        ]
+      },
+      {
+        featureType: "poi.business",
+        elementType: "geometry.stroke",
+        stylers: [
+          {
+            color: "#c4cedb"
+          }
+        ]
+      },
+      {
+        featureType: "poi.government",
+        elementType: "geometry.fill",
+        stylers: [
+          {
+            color: "#c4cedb"
+          }
+        ]
+      },
+      {
+        featureType: "poi.government",
+        elementType: "geometry.stroke",
+        stylers: [
+          {
+            color: "#c4cedb"
+          }
+        ]
+      },
+      {
+        featureType: "poi.medical",
+        elementType: "geometry.fill",
+        stylers: [
+          {
+            color: "#c4cedb"
+          }
+        ]
+      },
+      {
+        featureType: "poi.medical",
+        elementType: "geometry.stroke",
+        stylers: [
+          {
+            color: "#c4cedb"
+          }
+        ]
+      },
+      {
+        featureType: "poi.place_of_worship",
+        elementType: "geometry.fill",
+        stylers: [
+          {
+            color: "#c4cedb"
+          }
+        ]
+      },
+      {
+        featureType: "poi.place_of_worship",
+        elementType: "geometry.stroke",
+        stylers: [
+          {
+            color: "#c4cedb"
+          }
+        ]
+      },
+      {
+        featureType: "poi.school",
+        elementType: "geometry.fill",
+        stylers: [
+          {
+            color: "#c4cedb"
+          }
+        ]
+      },
+      {
+        featureType: "poi.school",
+        elementType: "geometry.stroke",
+        stylers: [
+          {
+            color: "#c4cedb"
+          }
+        ]
+      },
+      {
+        featureType: "poi.sports_complex",
+        elementType: "geometry.fill",
+        stylers: [
+          {
+            color: "#c4cedb"
+          }
+        ]
+      },
+      {
+        featureType: "poi.sports_complex",
+        elementType: "geometry.stroke",
+        stylers: [
+          {
+            color: "#c4cedb"
+          }
+        ]
+      },
+      {
+        featureType: "road",
+        elementType: "geometry.fill",
+        stylers: [
+          {
+            color: "#ffffff"
+          }
+        ]
+      },
+      {
+        featureType: "road",
+        elementType: "geometry.stroke",
+        stylers: [
+          {
+            color: "#ffffff"
+          }
+        ]
+      },
+      {
+        featureType: "road.arterial",
+        elementType: "geometry.fill",
+        stylers: [
+          {
+            color: "#ffffff"
+          }
+        ]
+      },
+      {
+        featureType: "road.arterial",
+        elementType: "geometry.stroke",
+        stylers: [
+          {
+            color: "#ffffff"
+          }
+        ]
+      },
+      {
+        featureType: "road.highway",
+        elementType: "geometry.fill",
+        stylers: [
+          {
+            color: "#ffffff"
+          }
+        ]
+      },
+      {
+        featureType: "road.highway",
+        elementType: "geometry.stroke",
+        stylers: [
+          {
+            color: "#ffffff"
+          }
+        ]
+      },
+      {
+        featureType: "road.local",
+        elementType: "geometry.fill",
+        stylers: [
+          {
+            color: "#ffffff"
+          }
+        ]
+      },
+      {
+        featureType: "road.local",
+        elementType: "geometry.stroke",
+        stylers: [
+          {
+            color: "#ffffff"
+          }
+        ]
+      },
+      {
+        featureType: "water",
+        elementType: "geometry.fill",
+        stylers: [
+          {
+            color: "#4da4bb"
+          }
+        ]
+      },
+      {
+        featureType: "water",
+        elementType: "geometry.stroke",
+        stylers: [
+          {
+            color: "#4da4bb"
+          }
+        ]
+      }
+    ]
   });
 
   var kmlLayer = new google.maps.KmlLayer({
