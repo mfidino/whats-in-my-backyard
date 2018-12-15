@@ -14,7 +14,7 @@ describe("makeUL", function() {
 });
 
 describe("aOrAn", function() {
-  it("should return 'an' if a number is between 80-89", function() {
+  it("should return 'an' if a number is between 80-89, otherwise 'a'", function() {
     var target1 = "an";
     assert.equal(siteFunctions.aOrAn([81, 75, 90]), target1);
     var target2 = "a";
