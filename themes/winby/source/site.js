@@ -336,7 +336,7 @@ window.initMap = function() {
 
   var kmlLayer = new google.maps.KmlLayer({
     url:
-      "https://gist.githubusercontent.com/mfidino/6d5b9197351e27dfe102de6405d4b354/raw/0f22d2ccbe9a91106620cc3b58c06ffe2d3e1749/neighborhood.kml",
+      "https://gist.githubusercontent.com/mfidino/6d5b9197351e27dfe102de6405d4b354/raw/a2b31ec4649e9ac0ed46dbe97a238a9ee1115874/neighborhood.kml",
     suppressInfoWindows: true,
     preserveViewport: true,
     map: map
