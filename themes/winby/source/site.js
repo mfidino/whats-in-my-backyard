@@ -49,9 +49,9 @@ function updateSelectedNeighborhood(neigh) {
 
 function replaceCurrentSpecies(data) {
   var mostCommon = `You are most likely to see ${data.most_common.species}.`;
-  var mostCommonProbability = `There is ${siteFunctions.aOrAn(data)} ${
-    data.most_common.probability[0]
-  } (${data.most_common.probability[1]} - ${
+  var mostCommonProbability = `There is ${siteFunctions.aOrAn(
+    data.most_common.probability
+  )} ${data.most_common.probability[0]} (${data.most_common.probability[1]} - ${
     data.most_common.probability[2]
   })% probability that ${data.most_common.species.toLowerCase()} are in the ${
     data.neighborhood

@@ -5,11 +5,8 @@ class SiteFunctions {
   }
   // Function to return "an" if a number is between 80-89,
   // otherwise returns "a"
-  aOrAn(data) {
-    if (
-      data.most_common.probability[0] >= 80 &&
-      data.most_common.probability[0] < 90
-    ) {
+  aOrAn(number) {
+    if (number[0] >= 80 && number[0] < 90) {
       return "an";
     } else {
       return "a";
