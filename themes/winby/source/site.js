@@ -46,7 +46,9 @@ function replaceCurrentSpecies(data) {
   $("#most-common-probability-text").text(mostCommonProbability);
   $("#changing-image").html(block_html);
   $("#less-common-species-header").text(lessCommon);
-  $("#tester").html(siteFunctions.makeUL(data.less_common.species));
+  $("#less-common-species-list").html(
+    siteFunctions.makeUL(data.less_common.species)
+  );
 
   window.species = data;
 }
