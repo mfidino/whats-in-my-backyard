@@ -28,25 +28,6 @@ function updateSelectedNeighborhood(neigh) {
     });
 }
 
-// function makeUL(array) {
-//   // Create the list element:
-//   var list = document.createElement("ul");
-
-//   for (var i = 0; i < array.length; i++) {
-//     // Create the list item:
-//     var item = document.createElement("li");
-
-//     // Set its contents:
-//     item.appendChild(document.createTextNode(array[i].species));
-
-//     // Add it to the list:
-//     list.appendChild(item);
-//   }
-
-//   // Finally, return the constructed list:
-//   return list;
-// }
-
 function replaceCurrentSpecies(data) {
   var mostCommon = `You are most likely to see ${data.most_common.species}.`;
   var mostCommonProbability = `There is ${siteFunctions.aOrAn(
@@ -67,7 +48,6 @@ function replaceCurrentSpecies(data) {
   $("#less-common-species-header").text(lessCommon);
   $("#tester").html(siteFunctions.makeUL(data.less_common.species));
 
-  //$("#selected-neighborhood").text(data.neighborhood);
   window.species = data;
 }
 
@@ -91,7 +71,6 @@ window.initMap = function() {
   });
   kmlLayer.addListener("click", function(event) {
     var neighborhoodName = event.featureData.name;
-    //console.log(`${neighborhoodName}`);
     updateSelectedNeighborhood(`${neighborhoodName}`);
     $("#selected-neighborhood").text(`${neighborhoodName}`);
   });
