@@ -9,3 +9,7 @@
   height: 25em;
   overflow: hidden;
 }
+
+body {
+  font-family: Verdana;
+}

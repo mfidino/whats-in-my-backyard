@@ -28,39 +28,11 @@ function updateSelectedNeighborhood(neigh) {
     });
 }
 
-// function makeUL(array) {
-//   // Create the list element:
-//   var list = document.createElement("ul");
-
-//   for (var i = 0; i < array.length; i++) {
-//     // Create the list item:
-//     var item = document.createElement("li");
-
-//     // Set its contents:
-//     item.appendChild(document.createTextNode(array[i].species));
-
-//     // Add it to the list:
-//     list.appendChild(item);
-//   }
-
-//   // Finally, return the constructed list:
-//   return list;
-// }
-
 function replaceCurrentSpecies(data) {
-  if (
-    data.most_common.probability[0] >= 80 &&
-    data.most_common.probability[0] < 90
-  ) {
-    var aOrAn = "an";
-  } else {
-    var aOrAn = "a";
-  }
-
   var mostCommon = `You are most likely to see ${data.most_common.species}.`;
-  var mostCommonProbability = `There is ${aOrAn} ${
-    data.most_common.probability[0]
-  } (${data.most_common.probability[1]} - ${
+  var mostCommonProbability = `There is ${siteFunctions.aOrAn(
+    data.most_common.probability
+  )} ${data.most_common.probability[0]} (${data.most_common.probability[1]} - ${
     data.most_common.probability[2]
   })% probability that ${data.most_common.species.toLowerCase()} are in the ${
     data.neighborhood
@@ -74,9 +46,10 @@ function replaceCurrentSpecies(data) {
   $("#most-common-probability-text").text(mostCommonProbability);
   $("#changing-image").html(block_html);
   $("#less-common-species-header").text(lessCommon);
-  $("#tester").html(siteFunctions.makeUL(data.less_common.species));
+  $("#less-common-species-list").html(
+    siteFunctions.makeUL(data.less_common.species)
+  );
 
-  //$("#selected-neighborhood").text(data.neighborhood);
   window.species = data;
 }
 
@@ -88,19 +61,288 @@ window.initMap = function() {
     zoom: 10,
     streetViewControl: false,
     mapTypeControl: false,
-    mapTypeId: "terrain"
+    mapTypeId: "terrain",
+    styles: [
+      {
+        elementType: "geometry.fill",
+        stylers: [
+          {
+            color: "#4bac42"
+          }
+        ]
+      },
+      {
+        elementType: "geometry.stroke",
+        stylers: [
+          {
+            color: "#4bac42"
+          }
+        ]
+      },
+      {
+        featureType: "landscape.man_made",
+        elementType: "geometry.fill",
+        stylers: [
+          {
+            color: "#c2cedc"
+          }
+        ]
+      },
+      {
+        featureType: "landscape.man_made",
+        elementType: "geometry.stroke",
+        stylers: [
+          {
+            color: "#586671"
+          }
+        ]
+      },
+      {
+        featureType: "landscape.natural",
+        elementType: "geometry.fill",
+        stylers: [
+          {
+            color: "#c4cedb"
+          }
+        ]
+      },
+      {
+        featureType: "landscape.natural",
+        elementType: "geometry.stroke",
+        stylers: [
+          {
+            color: "#c4cedb"
+          }
+        ]
+      },
+      {
+        featureType: "poi.attraction",
+        elementType: "geometry.fill",
+        stylers: [
+          {
+            color: "#c4cedb"
+          }
+        ]
+      },
+      {
+        featureType: "poi.attraction",
+        elementType: "geometry.stroke",
+        stylers: [
+          {
+            color: "#c4cedb"
+          }
+        ]
+      },
+      {
+        featureType: "poi.business",
+        elementType: "geometry.fill",
+        stylers: [
+          {
+            color: "#c4cedb"
+          }
+        ]
+      },
+      {
+        featureType: "poi.business",
+        elementType: "geometry.stroke",
+        stylers: [
+          {
+            color: "#c4cedb"
+          }
+        ]
+      },
+      {
+        featureType: "poi.government",
+        elementType: "geometry.fill",
+        stylers: [
+          {
+            color: "#c4cedb"
+          }
+        ]
+      },
+      {
+        featureType: "poi.government",
+        elementType: "geometry.stroke",
+        stylers: [
+          {
+            color: "#c4cedb"
+          }
+        ]
+      },
+      {
+        featureType: "poi.medical",
+        elementType: "geometry.fill",
+        stylers: [
+          {
+            color: "#c4cedb"
+          }
+        ]
+      },
+      {
+        featureType: "poi.medical",
+        elementType: "geometry.stroke",
+        stylers: [
+          {
+            color: "#c4cedb"
+          }
+        ]
+      },
+      {
+        featureType: "poi.place_of_worship",
+        elementType: "geometry.fill",
+        stylers: [
+          {
+            color: "#c4cedb"
+          }
+        ]
+      },
+      {
+        featureType: "poi.place_of_worship",
+        elementType: "geometry.stroke",
+        stylers: [
+          {
+            color: "#c4cedb"
+          }
+        ]
+      },
+      {
+        featureType: "poi.school",
+        elementType: "geometry.fill",
+        stylers: [
+          {
+            color: "#c4cedb"
+          }
+        ]
+      },
+      {
+        featureType: "poi.school",
+        elementType: "geometry.stroke",
+        stylers: [
+          {
+            color: "#c4cedb"
+          }
+        ]
+      },
+      {
+        featureType: "poi.sports_complex",
+        elementType: "geometry.fill",
+        stylers: [
+          {
+            color: "#c4cedb"
+          }
+        ]
+      },
+      {
+        featureType: "poi.sports_complex",
+        elementType: "geometry.stroke",
+        stylers: [
+          {
+            color: "#c4cedb"
+          }
+        ]
+      },
+      {
+        featureType: "road",
+        elementType: "geometry.fill",
+        stylers: [
+          {
+            color: "#ffffff"
+          }
+        ]
+      },
+      {
+        featureType: "road",
+        elementType: "geometry.stroke",
+        stylers: [
+          {
+            color: "#ffffff"
+          }
+        ]
+      },
+      {
+        featureType: "road.arterial",
+        elementType: "geometry.fill",
+        stylers: [
+          {
+            color: "#ffffff"
+          }
+        ]
+      },
+      {
+        featureType: "road.arterial",
+        elementType: "geometry.stroke",
+        stylers: [
+          {
+            color: "#ffffff"
+          }
+        ]
+      },
+      {
+        featureType: "road.highway",
+        elementType: "geometry.fill",
+        stylers: [
+          {
+            color: "#ffffff"
+          }
+        ]
+      },
+      {
+        featureType: "road.highway",
+        elementType: "geometry.stroke",
+        stylers: [
+          {
+            color: "#ffffff"
+          }
+        ]
+      },
+      {
+        featureType: "road.local",
+        elementType: "geometry.fill",
+        stylers: [
+          {
+            color: "#ffffff"
+          }
+        ]
+      },
+      {
+        featureType: "road.local",
+        elementType: "geometry.stroke",
+        stylers: [
+          {
+            color: "#ffffff"
+          }
+        ]
+      },
+      {
+        featureType: "water",
+        elementType: "geometry.fill",
+        stylers: [
+          {
+            color: "#4da4bb"
+          }
+        ]
+      },
+      {
+        featureType: "water",
+        elementType: "geometry.stroke",
+        stylers: [
+          {
+            color: "#4da4bb"
+          }
+        ]
+      }
+    ]
   });
 
   var kmlLayer = new google.maps.KmlLayer({
     url:
-      "https://gist.githubusercontent.com/mfidino/6d5b9197351e27dfe102de6405d4b354/raw/0f22d2ccbe9a91106620cc3b58c06ffe2d3e1749/neighborhood.kml",
+      "https://gist.githubusercontent.com/mfidino/6d5b9197351e27dfe102de6405d4b354/raw/a2b31ec4649e9ac0ed46dbe97a238a9ee1115874/neighborhood.kml",
     suppressInfoWindows: true,
     preserveViewport: true,
     map: map
   });
   kmlLayer.addListener("click", function(event) {
     var neighborhoodName = event.featureData.name;
-    //console.log(`${neighborhoodName}`);
     updateSelectedNeighborhood(`${neighborhoodName}`);
     $("#selected-neighborhood").text(`${neighborhoodName}`);
   });
