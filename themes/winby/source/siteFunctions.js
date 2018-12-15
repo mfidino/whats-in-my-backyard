@@ -1,6 +1,16 @@
 class SiteFunctions {
+  // Function to make html for unordered list of less common animals
   makeUL(animals) {
     return `<ul>${animals.map(a => `<li>${a}</li>`).join("")}</ul>`;
+  }
+  // Function to return "an" if a number is between 80-89,
+  // otherwise returns "a"
+  aOrAn(number) {
+    if (number[0] >= 80 && number[0] < 90) {
+      return "an";
+    } else {
+      return "a";
+    }
   }
 }
 
