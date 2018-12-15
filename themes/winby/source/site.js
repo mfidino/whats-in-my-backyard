@@ -48,17 +48,8 @@ function updateSelectedNeighborhood(neigh) {
 // }
 
 function replaceCurrentSpecies(data) {
-  if (
-    data.most_common.probability[0] >= 80 &&
-    data.most_common.probability[0] < 90
-  ) {
-    var aOrAn = "an";
-  } else {
-    var aOrAn = "a";
-  }
-
   var mostCommon = `You are most likely to see ${data.most_common.species}.`;
-  var mostCommonProbability = `There is ${aOrAn} ${
+  var mostCommonProbability = `There is ${siteFunctions.aOrAn(data)} ${
     data.most_common.probability[0]
   } (${data.most_common.probability[1]} - ${
     data.most_common.probability[2]
