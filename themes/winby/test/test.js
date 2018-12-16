@@ -23,3 +23,12 @@ describe("aOrAn", function() {
     assert.equal(siteFunctions.aOrAn([80.32, 65, 98]), target3);
   });
 });
+
+describe("makeCommonSpeciesText", function() {
+  it("Returns text that says what the most common species is", function() {
+    var target1 = "You are most likely to see raccoon.";
+    assert.equal(siteFunctions.makeCommonSpeciesText("raccoon"), target1);
+    var target2 = "You are most likely to see opossum.";
+    assert.equal(siteFunctions.makeCommonSpeciesText("opossum"), target2);
+  });
+});

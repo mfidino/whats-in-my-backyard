@@ -3,6 +3,11 @@ class SiteFunctions {
   makeUL(animals) {
     return `<ul>${animals.map(a => `<li>${a}</li>`).join("")}</ul>`;
   }
+
+  makeCommonSpeciesText(animals) {
+    return `You are most likely to see ${animals}.`;
+  }
+
   // Function to return "an" if a number is between 80-89,
   // otherwise returns "a"
   aOrAn(number) {
@@ -15,7 +20,7 @@ class SiteFunctions {
 
   selectNeighborhoodJson(neigh) {
     fetch("/species.json")
-      .then(spejs => spejs.json())
+      .then(speciesJson => speciesJson.json())
       .then(data => {
         try {
           this.replaceCurrentSpecies(data[neigh]);
@@ -26,7 +31,6 @@ class SiteFunctions {
   }
 
   replaceCurrentSpecies(data) {
-    var mostCommon = `You are most likely to see ${data.most_common.species}.`;
     var mostCommonProbability = `There is ${this.aOrAn(
       data.most_common.probability
     )} ${data.most_common.probability[0]} (${
@@ -41,7 +45,9 @@ class SiteFunctions {
     }" alt="${data.most_common.species.toLowerCase()} drawing">`;
     var lessCommon = `Other species you may see in ${data.neighborhood} are:`;
 
-    $("#most-common-species-text").text(mostCommon);
+    $("#most-common-species-text").text(
+      this.makeCommonSpeciesText(data.most_common.species)
+    );
     $("#most-common-probability-text").text(mostCommonProbability);
     $("#changing-image").html(block_html);
     $("#less-common-species-header").text(lessCommon);

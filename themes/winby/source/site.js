@@ -308,7 +308,8 @@ window.initMap = function() {
   });
   kmlLayer.addListener("click", function(event) {
     var neighborhoodName = event.featureData.name;
-    var myjson = siteFunctions.selectNeighborhoodJson(`${neighborhoodName}`);
+    siteFunctions.selectNeighborhoodJson(`${neighborhoodName}`);
+
     $("#selected-neighborhood").text(`${neighborhoodName}`);
   });
 };
