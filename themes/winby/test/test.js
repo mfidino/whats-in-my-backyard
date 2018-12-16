@@ -32,3 +32,32 @@ describe("makeCommonSpeciesText", function() {
     assert.equal(siteFunctions.makeCommonSpeciesText("opossum"), target2);
   });
 });
+
+describe("makeCommonProbabilityText", function() {
+  it("Returns text that says the probability the most common species is in a selected community area", function() {
+    var target1 =
+      "There is a 95 (80 - 100)% probability that coyote are in the O'Hare community area.";
+    assert.equal(
+      siteFunctions.makeCommonProbabilityText({
+        neighborhood: "O'Hare",
+        most_common: {
+          species: "coyote",
+          probability: [95, 80, 100]
+        }
+      }),
+      target1
+    );
+    var target2 =
+      "There is an 83 (75 - 90)% probability that raccoon are in the Norwood Park community area.";
+    assert.equal(
+      siteFunctions.makeCommonProbabilityText({
+        neighborhood: "Norwood Park",
+        most_common: {
+          species: "Raccoon",
+          probability: [83, 75, 90]
+        }
+      }),
+      target2
+    );
+  });
+});
