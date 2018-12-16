@@ -12,16 +12,12 @@ class SiteFunctions {
       return "a";
     }
   }
-  constructor() {
-    var me = this;
-  }
 
   selectNeighborhoodJson(neigh) {
     fetch("/species.json")
       .then(spejs => spejs.json())
       .then(data => {
         try {
-          //console.log(data[neigh]);
           this.replaceCurrentSpecies(data[neigh]);
         } catch (e) {
           console.log(e);
