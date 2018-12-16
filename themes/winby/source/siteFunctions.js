@@ -23,6 +23,13 @@ class SiteFunctions {
     return mostCommonProb;
   }
 
+  makeSpeciesImage(speciesArray) {
+    var block_html = `<img class="most-common-species-image" src="${
+      speciesArray.most_common.image
+    }" alt="${speciesArray.most_common.species.toLowerCase()} drawing">`;
+    return block_html;
+  }
+
   // Function to return "an" if a number is between 80-89,
   // otherwise returns "a"
   aOrAn(number) {
@@ -46,9 +53,6 @@ class SiteFunctions {
   }
 
   replaceCurrentSpecies(data) {
-    var block_html = `<img class="most-common-species-image" src="${
-      data.most_common.image
-    }" alt="${data.most_common.species.toLowerCase()} drawing">`;
     var lessCommon = `Other species you may see in ${data.neighborhood} are:`;
 
     $("#most-common-species-text").text(
@@ -57,7 +61,7 @@ class SiteFunctions {
     $("#most-common-probability-text").text(
       this.makeCommonProbabilityText(data)
     );
-    $("#changing-image").html(block_html);
+    $("#changing-image").html(this.makeSpeciesImage(data));
     $("#less-common-species-header").text(lessCommon);
     $("#less-common-species-list").html(this.makeUL(data.less_common.species));
 

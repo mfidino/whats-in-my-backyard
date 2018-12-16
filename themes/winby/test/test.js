@@ -61,3 +61,28 @@ describe("makeCommonProbabilityText", function() {
     );
   });
 });
+
+describe("makeSpeciesImage", function() {
+  it("Returns html block with path to the most common species photo and alt text.", function() {
+    var target1 = `<img class="most-common-species-image" src="/images/coyote.png" alt="coyote drawing">`;
+    assert.equal(
+      siteFunctions.makeSpeciesImage({
+        most_common: {
+          species: "coyote",
+          image: "/images/coyote.png"
+        }
+      }),
+      target1
+    );
+    var target1 = `<img class="most-common-species-image" src="/images/raccoon.png" alt="raccoon drawing">`;
+    assert.equal(
+      siteFunctions.makeSpeciesImage({
+        most_common: {
+          species: "Raccoon",
+          image: "/images/raccoon.png"
+        }
+      }),
+      target1
+    );
+  });
+});
