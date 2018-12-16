@@ -18,11 +18,10 @@ class SiteFunctions {
 
   selectNeighborhoodJson(neigh) {
     fetch("/species.json")
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(data) {
+      .then(spejs => spejs.json())
+      .then(data => {
         try {
+          //console.log(data[neigh]);
           this.replaceCurrentSpecies(data[neigh]);
         } catch (e) {
           console.log(e);

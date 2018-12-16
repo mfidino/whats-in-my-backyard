@@ -309,7 +309,6 @@ window.initMap = function() {
   kmlLayer.addListener("click", function(event) {
     var neighborhoodName = event.featureData.name;
     var myjson = siteFunctions.selectNeighborhoodJson(`${neighborhoodName}`);
-    console.log(myjson);
     $("#selected-neighborhood").text(`${neighborhoodName}`);
   });
 };
