@@ -86,3 +86,12 @@ describe("makeSpeciesImage", function() {
     );
   });
 });
+
+describe("makeLessCommonHeader", function() {
+  it("Returns text that says other species you may see in a neighborhood", function() {
+    var target1 = "Other species you may see in Norwood Park are:";
+    assert.equal(siteFunctions.makeLessCommonHeader("Norwood Park"), target1);
+    var target2 = "Other species you may see in Logan Square are:";
+    assert.equal(siteFunctions.makeLessCommonHeader("Logan Square"), target2);
+  });
+});

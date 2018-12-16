@@ -30,6 +30,10 @@ class SiteFunctions {
     return block_html;
   }
 
+  makeLessCommonHeader(neighborhood) {
+    return `Other species you may see in ${neighborhood} are:`;
+  }
+
   // Function to return "an" if a number is between 80-89,
   // otherwise returns "a"
   aOrAn(number) {
@@ -51,10 +55,8 @@ class SiteFunctions {
         }
       });
   }
-
+  // Call the updating functions.
   replaceCurrentSpecies(data) {
-    var lessCommon = `Other species you may see in ${data.neighborhood} are:`;
-
     $("#most-common-species-text").text(
       this.makeCommonSpeciesText(data.most_common.species)
     );
@@ -62,22 +64,13 @@ class SiteFunctions {
       this.makeCommonProbabilityText(data)
     );
     $("#changing-image").html(this.makeSpeciesImage(data));
-    $("#less-common-species-header").text(lessCommon);
+    $("#less-common-species-header").text(
+      this.makeLessCommonHeader(data.neighborhood)
+    );
     $("#less-common-species-list").html(this.makeUL(data.less_common.species));
-
     window.species = data;
   }
 }
-
-// function updateSelectedNeighborhood(neigh) {
-//   fetch("/species.json")
-//     .then(function(response) {
-//       return response.json();
-//     })
-//     .then(function(data) {
-//       replaceCurrentSpecies(data[neigh]);
-//     });
-// }
 
 // Lame way of dealing with module.exports (which we need for mocha) in scripts we load in the HTML
 // There's 100% a better way of doing this, but done trying to figure out a better *easier* way - Seth
