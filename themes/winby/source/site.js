@@ -5,22 +5,6 @@ function startSite() {
   $("#map-trigger-button").on("click", function() {
     updateSelectedNeighborhood();
   });
-  $("#speciesCard").html(`<div class="col-md-4">
-      <div class="card border-0">
-        <h4 class="card-title">
-          Norwood Park
-        </h4>
-        <div class="card-body">
-          <h5 class="card-text">You are most likely to see raccoon.</h5>
-          <p class="card-text">There is an 83 (75 - 90)% probability that raccoon are in the Norwood Park community area.</p>
-          <h5 class="card-text">Other species you may see in Norwood Park are:</h5>
-          <ul class="card-text"><li>coyote</li><li>gray squirrel</li></ul>
-        </div>
-      </div>
-        </div>
-          <div class="col">
-          <img class="most-common-species-image" src="/images/raccoon.png" alt="raccoon drawing">
-        </div>`);
 }
 $(document).ready(startSite);
 
