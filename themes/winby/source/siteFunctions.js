@@ -24,7 +24,7 @@ class SiteFunctions {
   }
 
   makeSpeciesImage(speciesArray) {
-    var block_html = `<img class="most-common-species-image" src="${
+    var block_html = `<img class="most-common-species-image" src="/images/${
       speciesArray.most_common.image
     }" alt="${speciesArray.most_common.species.toLowerCase()} drawing">`;
     return block_html;

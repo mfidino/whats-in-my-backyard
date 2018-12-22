@@ -8,7 +8,7 @@
       80,
       100
     ],
-    "image":"/images/coyote.png"
+    "image":"coyote.png"
   },
   "less_common": 
     {
@@ -32,7 +32,7 @@
       75,
       90
     ],
-    "image": "/images/raccoon.png"
+    "image": "raccoon.png"
   },
   "less_common": 
     {
