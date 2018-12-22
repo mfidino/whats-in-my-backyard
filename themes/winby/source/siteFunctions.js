@@ -1,15 +1,17 @@
 class SiteFunctions {
   // Function to make html for unordered list of less common animals
   makeUL(animals) {
-    return `<ul>${animals.map(a => `<li>${a}</li>`).join("")}</ul>`;
+    return `<ul class="card-text">${animals
+      .map(a => `<li>${a}</li>`)
+      .join("")}</ul>`;
   }
 
   makeCommonSpeciesText(animals) {
-    return `You are most likely to see ${animals}.`;
+    return `<h5 class="card-text">You are most likely to see ${animals}.</h5>`;
   }
 
   makeCommonProbabilityText(speciesArray) {
-    var mostCommonProb = `There is ${this.aOrAn(
+    var mostCommonProb = `<p class="card-text">There is ${this.aOrAn(
       speciesArray.most_common.probability
     )}`;
     mostCommonProb += ` ${speciesArray.most_common.probability[0]}`;
@@ -18,20 +20,20 @@ class SiteFunctions {
     })%`;
     mostCommonProb += ` probability that ${speciesArray.most_common.species.toLowerCase()} are in the ${
       speciesArray.neighborhood
-    } community area.`;
+    } community area.</p>`;
 
     return mostCommonProb;
   }
 
   makeSpeciesImage(speciesArray) {
-    var block_html = `<img class="most-common-species-image" src="${
+    var block_html = `<img class="most-common-species-image" src="/images/${
       speciesArray.most_common.image
     }" alt="${speciesArray.most_common.species.toLowerCase()} drawing">`;
     return block_html;
   }
 
   makeLessCommonHeader(neighborhood) {
-    return `Other species you may see in ${neighborhood} are:`;
+    return `<h5 class="card-text">Other species you may see in ${neighborhood} are:</h5>`;
   }
 
   // Function to return "an" if a number is between 80-89,
@@ -42,6 +44,10 @@ class SiteFunctions {
     } else {
       return "a";
     }
+  }
+
+  makeMostCommonHeader(data) {
+    return `<h4 class="card-title">${data.neighborhood}</h4>`;
   }
 
   selectNeighborhoodJson(neigh) {
@@ -55,19 +61,25 @@ class SiteFunctions {
         }
       });
   }
+
+  makeSpeciesCard(data) {
+    var block_html = `<div class="row"><div class="col-sm-8"><div class="card border-0">`;
+    block_html += this.makeMostCommonHeader(data);
+    block_html += `<div class="card-body">`;
+    block_html += this.makeCommonSpeciesText(data.most_common.species);
+    block_html += this.makeCommonProbabilityText(data);
+    block_html += this.makeLessCommonHeader(data.neighborhood);
+    block_html += this.makeUL(data.less_common.species);
+    block_html += `</div></div></div><div class="col-sm-1">`;
+    block_html += this.makeSpeciesImage(data);
+    block_html += `</div></div>`;
+    return block_html;
+  }
+
   // Call the updating functions.
   replaceCurrentSpecies(data) {
-    $("#most-common-species-text").text(
-      this.makeCommonSpeciesText(data.most_common.species)
-    );
-    $("#most-common-probability-text").text(
-      this.makeCommonProbabilityText(data)
-    );
-    $("#changing-image").html(this.makeSpeciesImage(data));
-    $("#less-common-species-header").text(
-      this.makeLessCommonHeader(data.neighborhood)
-    );
-    $("#less-common-species-list").html(this.makeUL(data.less_common.species));
+    $("#species-card").html(this.makeSpeciesCard(data));
+
     window.species = data;
   }
 }
