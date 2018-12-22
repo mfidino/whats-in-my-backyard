@@ -69,7 +69,7 @@ describe("makeSpeciesImage", function() {
       siteFunctions.makeSpeciesImage({
         most_common: {
           species: "coyote",
-          image: "/images/coyote.png"
+          image: "coyote.png"
         }
       }),
       target1
@@ -79,7 +79,7 @@ describe("makeSpeciesImage", function() {
       siteFunctions.makeSpeciesImage({
         most_common: {
           species: "Raccoon",
-          image: "/images/raccoon.png"
+          image: "raccoon.png"
         }
       }),
       target1
@@ -96,6 +96,26 @@ describe("makeLessCommonHeader", function() {
   });
 });
 
-
-
-
+describe("makeSpeciesCard", function() {
+  it("Returns the html for the species card after clicking on a neighborhood", function() {
+    var target1 = `<div class="row"><div class="col-sm-8"><div class="card border-0"><h4 class="card-title">Norwood Park</h4><div class="card-body"><h5 class="card-text">You are most likely to see raccoon.</h5><p class="card-text">There is an 83 (75 - 90)% probability that raccoon are in the Norwood Park community area.</p><h5 class="card-text">Other species you may see in Norwood Park are:</h5><ul class="card-text"><li>coyote</li><li>gray squirrel</li></ul></div></div></div><div class="col-sm-1"><img class="most-common-species-image" src="/images/raccoon.png" alt="raccoon drawing"></div></div>`;
+    assert.equal(
+      siteFunctions.makeSpeciesCard({
+        neighborhood: "Norwood Park",
+        most_common: {
+          species: "raccoon",
+          probability: [83, 75, 90],
+          image: "raccoon.png"
+        },
+        less_common: {
+          species: ["coyote", "gray squirrel"],
+          probability: {
+            coyote: [80, 60, 85],
+            "gray squirrel": [45, 30, 75]
+          }
+        }
+      }),
+      target1
+    );
+  });
+});

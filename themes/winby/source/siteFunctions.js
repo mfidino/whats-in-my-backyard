@@ -1,15 +1,17 @@
 class SiteFunctions {
   // Function to make html for unordered list of less common animals
   makeUL(animals) {
-    return `<ul>${animals.map(a => `<li>${a}</li>`).join("")}</ul>`;
+    return `<ul class="card-text">${animals
+      .map(a => `<li>${a}</li>`)
+      .join("")}</ul>`;
   }
 
   makeCommonSpeciesText(animals) {
-    return `You are most likely to see ${animals}.`;
+    return `<h5 class="card-text">You are most likely to see ${animals}.</h5>`;
   }
 
   makeCommonProbabilityText(speciesArray) {
-    var mostCommonProb = `There is ${this.aOrAn(
+    var mostCommonProb = `<p class="card-text">There is ${this.aOrAn(
       speciesArray.most_common.probability
     )}`;
     mostCommonProb += ` ${speciesArray.most_common.probability[0]}`;
@@ -18,7 +20,7 @@ class SiteFunctions {
     })%`;
     mostCommonProb += ` probability that ${speciesArray.most_common.species.toLowerCase()} are in the ${
       speciesArray.neighborhood
-    } community area.`;
+    } community area.</p>`;
 
     return mostCommonProb;
   }
@@ -31,7 +33,7 @@ class SiteFunctions {
   }
 
   makeLessCommonHeader(neighborhood) {
-    return `Other species you may see in ${neighborhood} are:`;
+    return `<h5 class="card-text">Other species you may see in ${neighborhood} are:</h5>`;
   }
 
   // Function to return "an" if a number is between 80-89,
@@ -42,6 +44,10 @@ class SiteFunctions {
     } else {
       return "a";
     }
+  }
+
+  makeMostCommonHeader(data) {
+    return `<h4 class="card-title">${data.neighborhood}</h4>`;
   }
 
   selectNeighborhoodJson(neigh) {
@@ -56,14 +62,13 @@ class SiteFunctions {
       });
   }
 
-  makeSpeceisCard(data) {
-    var block_html = `<div class="row"><div class="col-sm-8"><div class="card border-0"><h4 class="card-title">`;
+  makeSpeciesCard(data) {
+    var block_html = `<div class="row"><div class="col-sm-8"><div class="card border-0">`;
+    block_html += this.makeMostCommonHeader(data);
+    block_html += `<div class="card-body">`;
     block_html += this.makeCommonSpeciesText(data.most_common.species);
-    block_html += `</h4><div class="card-body"><h5 class="card-text">`;
     block_html += this.makeCommonProbabilityText(data);
-    block_html += `</h5><p class="card-text">`;
     block_html += this.makeLessCommonHeader(data.neighborhood);
-    block_html += `</h5>`;
     block_html += this.makeUL(data.less_common.species);
     block_html += `</div></div></div><div class="col-sm-1">`;
     block_html += this.makeSpeciesImage(data);
@@ -73,25 +78,25 @@ class SiteFunctions {
 
   // Call the updating functions.
   replaceCurrentSpecies(data) {
-    //   $("#speciesCard").html(`<div class="row">
-    //   <div class="col-sm-8">
-    //     <div class="card border-0">
-    //       <h4 class="card-title">
-    //         Norwood Park
-    //       </h4>
-    //       <div class="card-body">
-    //         <h5 class="card-text">You are most likely to see raccoon.</h5>
-    //         <p class="card-text">There is an 83 (75 - 90)% probability that raccoon are in the Norwood Park community area.</p>
-    //         <h5 class="card-text">Other species you may see in Norwood Park are:</h5>
-    //         <ul class="card-text"><li>coyote</li><li>gray squirrel</li></ul>
-    //       </div>
-    //     </div>
-    //       </div>
-    //         <div class="col-sm-1">
-    //         <img class="most-common-species-image" src="/images/raccoon.png" alt="raccoon drawing">
-    //       </div>
-    // </div>`);
-    $("#species-card").html(this.makeSpeceisCard(data));
+    $("#speciesCard").html(`<div class="row">
+      <div class="col-sm-8">
+        <div class="card border-0">
+          <h4 class="card-title">
+            Norwood Park
+          </h4>
+          <div class="card-body">
+            <h5 class="card-text">You are most likely to see raccoon.</h5>
+            <p class="card-text">There is an 83 (75 - 90)% probability that raccoon are in the Norwood Park community area.</p>
+            <h5 class="card-text">Other species you may see in Norwood Park are:</h5>
+            <ul class="card-text"><li>coyote</li><li>gray squirrel</li></ul>
+          </div>
+        </div>
+          </div>
+            <div class="col-sm-1">
+            <img class="most-common-species-image" src="/images/raccoon.png" alt="raccoon drawing">
+          </div>
+    </div>`);
+    $("#species-card").html(this.makeSpeciesCard(data));
 
     window.species = data;
   }
