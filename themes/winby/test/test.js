@@ -4,11 +4,11 @@ var siteFunctions = new SiteFunctions();
 
 describe("makeUL", function() {
   it("should return an html block for an unordered list given an array of species names", function() {
-    var target = "<ul><li>raccoon</li><li>deer</li></ul>";
+    var target = `<ul class="card-text"><li>raccoon</li><li>deer</li></ul>`;
     assert.equal(siteFunctions.makeUL(["raccoon", "deer"]), target);
-    var target2 = "<ul><li>raccoon</li></ul>";
+    var target2 = `<ul class="card-text"><li>raccoon</li></ul>`;
     assert.equal(siteFunctions.makeUL(["raccoon"]), target2);
-    var target3 = "<ul><li>raccoon</li><li>deer</li><li>coyote</li></ul>";
+    var target3 = `<ul class="card-text"><li>raccoon</li><li>deer</li><li>coyote</li></ul>`;
     assert.equal(siteFunctions.makeUL(["raccoon", "deer", "coyote"]), target3);
   });
 });
@@ -26,17 +26,16 @@ describe("aOrAn", function() {
 
 describe("makeCommonSpeciesText", function() {
   it("Returns text that says what the most common species is", function() {
-    var target1 = "You are most likely to see raccoon.";
+    var target1 = `<h5 class="card-text">You are most likely to see raccoon.</h5>`;
     assert.equal(siteFunctions.makeCommonSpeciesText("raccoon"), target1);
-    var target2 = "You are most likely to see opossum.";
+    var target2 = `<h5 class="card-text">You are most likely to see opossum.</h5>`;
     assert.equal(siteFunctions.makeCommonSpeciesText("opossum"), target2);
   });
 });
 
 describe("makeCommonProbabilityText", function() {
   it("Returns text that says the probability the most common species is in a selected community area", function() {
-    var target1 =
-      "There is a 95 (80 - 100)% probability that coyote are in the O'Hare community area.";
+    var target1 = `<p class="card-text">There is a 95 (80 - 100)% probability that coyote are in the O'Hare community area.</p>`;
     assert.equal(
       siteFunctions.makeCommonProbabilityText({
         neighborhood: "O'Hare",
@@ -47,8 +46,7 @@ describe("makeCommonProbabilityText", function() {
       }),
       target1
     );
-    var target2 =
-      "There is an 83 (75 - 90)% probability that raccoon are in the Norwood Park community area.";
+    var target2 = `<p class="card-text">There is an 83 (75 - 90)% probability that raccoon are in the Norwood Park community area.</p>`;
     assert.equal(
       siteFunctions.makeCommonProbabilityText({
         neighborhood: "Norwood Park",
@@ -89,9 +87,9 @@ describe("makeSpeciesImage", function() {
 
 describe("makeLessCommonHeader", function() {
   it("Returns text that says other species you may see in a neighborhood", function() {
-    var target1 = "Other species you may see in Norwood Park are:";
+    var target1 = `<h5 class="card-text">Other species you may see in Norwood Park are:</h5>`;
     assert.equal(siteFunctions.makeLessCommonHeader("Norwood Park"), target1);
-    var target2 = "Other species you may see in Logan Square are:";
+    var target2 = `<h5 class="card-text">Other species you may see in Logan Square are:</h5>`;
     assert.equal(siteFunctions.makeLessCommonHeader("Logan Square"), target2);
   });
 });
