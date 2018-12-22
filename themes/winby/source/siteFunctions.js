@@ -55,6 +55,22 @@ class SiteFunctions {
         }
       });
   }
+
+  makeSpeceisCard(data) {
+    var block_html = `<div class="row"><div class="col-sm-8"><div class="card border-0"><h4 class="card-title">`;
+    block_html += this.makeCommonSpeciesText(data.most_common.species);
+    block_html += `</h4><div class="card-body"><h5 class="card-text">`;
+    block_html += this.makeCommonProbabilityText(data);
+    block_html += `</h5><p class="card-text">`;
+    block_html += this.makeLessCommonHeader(data.neighborhood);
+    block_html += `</h5>`;
+    block_html += this.makeUL(data.less_common.species);
+    block_html += `</div></div></div><div class="col-sm-1">`;
+    block_html += this.makeSpeciesImage(data);
+    block_html += `</div></div>`;
+    return block_html;
+  }
+
   // Call the updating functions.
   replaceCurrentSpecies(data) {
     //   $("#speciesCard").html(`<div class="row">
@@ -75,20 +91,7 @@ class SiteFunctions {
     //         <img class="most-common-species-image" src="/images/raccoon.png" alt="raccoon drawing">
     //       </div>
     // </div>`);
-
-    var block_html = `<div class="row"><div class="col-sm-8"><div class="card border-0"><h4 class="card-title">`;
-    block_html += this.makeCommonSpeciesText(data.most_common.species);
-    block_html += `</h4><div class="card-body"><h5 class="card-text">`;
-    block_html += this.makeCommonProbabilityText(data);
-    block_html += `</h5><p class="card-text">`;
-    block_html += this.makeLessCommonHeader(data.neighborhood);
-    block_html += `</h5>`;
-    block_html += this.makeUL(data.less_common.species);
-    block_html += `</div></div></div><div class="col-sm-1">`;
-    block_html += this.makeSpeciesImage(data);
-    block_html += `</div></div>`;
-
-    $("#species-card").html(block_html);
+    $("#species-card").html(this.makeSpeceisCard(data));
 
     window.species = data;
   }
