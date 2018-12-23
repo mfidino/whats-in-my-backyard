@@ -298,6 +298,9 @@ window.initMap = function() {
       }
     ]
   });
+  google.maps.event.addDomListener(map, "click", function() {
+    siteFunctions.clickInNeighborhoodWarning();
+  });
 
   var kmlLayer = new google.maps.KmlLayer({
     url:
@@ -306,6 +309,7 @@ window.initMap = function() {
     preserveViewport: true,
     map: map
   });
+
   kmlLayer.addListener("click", function(event) {
     var neighborhoodName = event.featureData.name;
     siteFunctions.selectNeighborhoodJson(`${neighborhoodName}`);
