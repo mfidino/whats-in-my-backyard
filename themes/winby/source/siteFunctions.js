@@ -82,6 +82,11 @@ class SiteFunctions {
 
     window.species = data;
   }
+
+  clickInNeighborhoodWarning() {
+    var my_html = `<div class="alert alert-warning text-center" role="alert">You clicked outside of the community areas. Please click on one of the colored community areas to see which mammals are most likely to live there.</div>`;
+    $("#species-card").html(my_html);
+  }
 }
 
 // Lame way of dealing with module.exports (which we need for mocha) in scripts we load in the HTML

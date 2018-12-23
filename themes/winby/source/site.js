@@ -299,7 +299,7 @@ window.initMap = function() {
     ]
   });
   google.maps.event.addDomListener(map, "click", function() {
-    siteFunctions.clickInNeighborhood();
+    siteFunctions.clickInNeighborhoodWarning();
   });
 
   var kmlLayer = new google.maps.KmlLayer({
